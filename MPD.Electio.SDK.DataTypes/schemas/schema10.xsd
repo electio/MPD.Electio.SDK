@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.CarrierServiceDirectory" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.CarrierServiceDirectory" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Caching" />
+  <xs:element name="Carrier" nillable="true" type="tns:Carrier" />
+  <xs:complexType name="Carrier">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Caching" base="q1:BaseCacheableEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MpdCarrierServiceSource" type="tns:MpdCarrierServiceSource" />
+  <xs:simpleType name="MpdCarrierServiceSource">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Internal" />
+      <xs:enumeration value="External" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MpdCarrierServiceType" type="tns:MpdCarrierServiceType" />
+  <xs:simpleType name="MpdCarrierServiceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Scheduled" />
+      <xs:enumeration value="AdHoc" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

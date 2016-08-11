@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Subscription.Enums" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Subscription.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SubscriptionStatus" type="tns:SubscriptionStatus" />
+  <xs:simpleType name="SubscriptionStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="Suspended" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

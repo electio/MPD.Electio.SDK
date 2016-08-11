@@ -1,0 +1,956 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Consignments" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Consignments" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.DeliveryOptions" />
+  <xs:import namespace="http://microsoft.com/wsdl/types/" />
+  <xs:import namespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" />
+  <xs:complexType name="MetaDataFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="KeyValue" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MetaDataType" type="tns:MetaDataType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StringValues" type="tns:ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StringValuesSelected" type="tns:ArrayOfString" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IntValueFrom" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IntValueTo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DecimalValueFrom" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DecimalValueTo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateTimeValueFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateTimeValueTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BoolValue" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="MetaDataType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="String" />
+      <xs:enumeration value="Int" />
+      <xs:enumeration value="Decimal" />
+      <xs:enumeration value="DateTime" />
+      <xs:enumeration value="Bool" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Consignment">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ConsignmentBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentLegs" type="tns:ArrayOfConsignmentLeg" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CollectionDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DateDelivered" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="FirstAttemptedDeliveryDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DateReturned" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DateShipped" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DateCollected" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AttemptedDeliveryDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMetaData" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:ArrayOfPackage" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Allocation" type="tns:Allocation" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FailedAllocation" type="tns:FailedAllocation" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ConsignmentState" type="tns:ConsignmentState" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Source" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="LabelCount" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="LabelsPrinted" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DateLabelsWereFirstPrinted" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsLate" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="LateForCustomer" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LocationInformation" type="tns:LocationInformation" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ConsignmentBase" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateCreated" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequestedDeliveryDate" type="tns:RequestedDeliveryDate" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippingDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EarliestDeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LatestDeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CustomerReference" xmlns:q1="http://microsoft.com/wsdl/types/" type="q1:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Weight" xmlns:q2="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q2:Weight" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" xmlns:q3="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q3:Money" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustomsDocumentation" type="tns:CustomsDocumentation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Addresses" type="tns:ArrayOfAddress" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestedDeliveryDate">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeliveryWindow" xmlns:q4="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.DeliveryOptions" type="q4:DeliveryWindow" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsToBeExactlyOnTheDateSpecified" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomsDocumentation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DesignatedPersonResponsible" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ImportersVatNumber" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CategoryType" type="tns:CategoryType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShipperCustomsReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ImportersTaxCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ImportersTelephone" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ImportersFax" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ImportersEmail" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CN23Comments" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferencesOfAttachedInvoices" type="tns:ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferencesOfAttachedCertificates" type="tns:ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferencesOfAttachedLicences" type="tns:ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CategoryTypeExplanation" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OfficeOfPosting" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReasonForExport" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippingTerms" type="tns:ShippingTerms" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShippersVatNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReceiversTaxCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReceiversVatNumber" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="InvoiceDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CategoryType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Gift" />
+          <xs:enumeration value="CommercialSample" />
+          <xs:enumeration value="Documents" />
+          <xs:enumeration value="Other" />
+          <xs:enumeration value="ReturnedGoods" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="ShippingTerms">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="EXW" />
+          <xs:enumeration value="FCA" />
+          <xs:enumeration value="CPT" />
+          <xs:enumeration value="CIP" />
+          <xs:enumeration value="DAT" />
+          <xs:enumeration value="DAP" />
+          <xs:enumeration value="DDP" />
+          <xs:enumeration value="FAS" />
+          <xs:enumeration value="FOB" />
+          <xs:enumeration value="CFR" />
+          <xs:enumeration value="CIF" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfAddress">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Address" nillable="true" type="tns:Address" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" base="q5:Address">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="AddressType" type="tns:ConsignmentAddressType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ShopLocationReference" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ConsignmentAddressType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Origin" />
+          <xs:enumeration value="Destination" />
+          <xs:enumeration value="Return" />
+          <xs:enumeration value="Sender" />
+          <xs:enumeration value="Recipient" />
+          <xs:enumeration value="Importer" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfConsignmentLeg">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsignmentLeg" nillable="true" type="tns:ConsignmentLeg" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsignmentLeg">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Leg" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TrackingReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfMetaData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MetaData" nillable="true" type="tns:MetaData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MetaData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="KeyValue" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StringValue" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IntValue" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DecimalValue" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateTimeValue" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BoolValue" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Package" nillable="true" type="tns:Package" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Package">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentLegs" type="tns:ArrayOfConsignmentLeg" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Weight" xmlns:q6="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q6:Weight" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dimensions" xmlns:q7="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q7:Dimensions" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" xmlns:q8="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q8:Money" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageSizeReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Barcode" xmlns:q9="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q9:Barcode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfItem" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMetaData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Charges" type="tns:ArrayOfKeyValuePairOfCustomChargeTypeDecimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:Item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Sku" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Model" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryOfOrigin" xmlns:q10="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q10:Country" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HarmonisationCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Weight" xmlns:q11="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q11:Weight" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dimensions" xmlns:q12="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q12:Dimensions" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" xmlns:q13="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q13:Money" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ItemReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Barcode" xmlns:q14="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q14:Barcode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMetaData" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UnitOfQuantity" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ItemUnit" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HarmonisationKeyWords" type="tns:ArrayOfString" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ContentClassification" nillable="true" type="tns:ContentClassification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ContentClassificationDetails" nillable="true" type="tns:ContentClassificationDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ContentClassification">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotSpecified" />
+          <xs:enumeration value="Unrestricted" />
+          <xs:enumeration value="Dangerous" />
+          <xs:enumeration value="Restricted" />
+          <xs:enumeration value="Liquid" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="ContentClassificationDetails">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotSpecified" />
+          <xs:enumeration value="Explosive" />
+          <xs:enumeration value="Flammable" />
+          <xs:enumeration value="Toxic" />
+          <xs:enumeration value="Aerosols" />
+          <xs:enumeration value="Alcohol" />
+          <xs:enumeration value="Batteries" />
+          <xs:enumeration value="Electronics" />
+          <xs:enumeration value="Guns" />
+          <xs:enumeration value="Lighters" />
+          <xs:enumeration value="NailVarnish" />
+          <xs:enumeration value="PerfumeOrAftershave" />
+          <xs:enumeration value="Medicine" />
+          <xs:enumeration value="LiveAnimals" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfKeyValuePairOfCustomChargeTypeDecimal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValuePairOfCustomChargeTypeDecimal" xmlns:q15="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q15:KeyValuePairOfCustomChargeTypeDecimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Allocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierServiceGroupReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceGroupName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AllocationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Price" type="tns:Rate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Rate">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Net" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Gross" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VatRate" xmlns:q16="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q16:VatRate" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VatAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Currency" xmlns:q17="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q17:Currency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FailedAllocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierServiceGroupReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceGroupName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AttemptedAllocationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ConsignmentState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unallocated" />
+      <xs:enumeration value="Allocating" />
+      <xs:enumeration value="AllocationFailed" />
+      <xs:enumeration value="Allocated" />
+      <xs:enumeration value="Manifesting" />
+      <xs:enumeration value="Manifested" />
+      <xs:enumeration value="ManifestFailed" />
+      <xs:enumeration value="AtDropOffPoint" />
+      <xs:enumeration value="Collected" />
+      <xs:enumeration value="CollectionFailed" />
+      <xs:enumeration value="InTransit" />
+      <xs:enumeration value="Delayed" />
+      <xs:enumeration value="OutForDelivery" />
+      <xs:enumeration value="DeliveryFailed" />
+      <xs:enumeration value="DeliveryFailedCardLeft" />
+      <xs:enumeration value="Delivered" />
+      <xs:enumeration value="PartiallyDelivered" />
+      <xs:enumeration value="AtCollectionPoint" />
+      <xs:enumeration value="ReturnToSender" />
+      <xs:enumeration value="ActionRequired" />
+      <xs:enumeration value="Missing" />
+      <xs:enumeration value="Lost" />
+      <xs:enumeration value="Damaged" />
+      <xs:enumeration value="Cancelling" />
+      <xs:enumeration value="Cancelled" />
+      <xs:enumeration value="InTransitWaiting" />
+      <xs:enumeration value="HeldByCarrier" />
+      <xs:enumeration value="ExchangeFailed" />
+      <xs:enumeration value="AtCustoms" />
+      <xs:enumeration value="CarrierUnableToCollect" />
+      <xs:enumeration value="DeliveredDamaged" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LocationInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ShopReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReservationReference" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeliveryOptionsRequest" nillable="true" type="tns:DeliveryOptionsRequest" />
+  <xs:complexType name="DeliveryOptionsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseCreateConsignmentRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="DeliveryDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="GuaranteedOnly" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BaseCreateConsignmentRequest" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippingDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:ArrayOfPackage" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustomsDocumentation" type="tns:CustomsDocumentation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Addresses" type="tns:ArrayOfAddress" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddItemRequest" nillable="true" type="tns:AddItemRequest" />
+  <xs:complexType name="AddItemRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ItemReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Sku" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryOfOriginTwoLetterIsoCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HarmonisationCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Weight" xmlns:q18="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q18:Weight" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dimensions" xmlns:q19="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q19:Dimensions" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" xmlns:q20="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q20:Money" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Barcode" xmlns:q21="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q21:Barcode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ContentClassification" nillable="true" type="tns:ContentClassification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ContentClassificationDetails" nillable="true" type="tns:ContentClassificationDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AllocateAllConsignmentsRequest" nillable="true" type="tns:AllocateAllConsignmentsRequest" />
+  <xs:complexType name="AllocateAllConsignmentsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ShipByDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShippingLocationReference" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AllocateAllConsignmentsWithServiceGroupRequest" nillable="true" type="tns:AllocateAllConsignmentsWithServiceGroupRequest" />
+  <xs:complexType name="AllocateAllConsignmentsWithServiceGroupRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AllocateAllConsignmentsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceGroupReference" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AllocateAllConsignmentsWithCarrierServiceRequest" nillable="true" type="tns:AllocateAllConsignmentsWithCarrierServiceRequest" />
+  <xs:complexType name="AllocateAllConsignmentsWithCarrierServiceRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AllocateAllConsignmentsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceReference" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AllocateConsignmentsRequest" nillable="true" type="tns:AllocateConsignmentsRequest" />
+  <xs:complexType name="AllocateConsignmentsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferences" type="tns:ArrayOfString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AllocateConsignmentsWithServiceGroupRequest" nillable="true" type="tns:AllocateConsignmentsWithServiceGroupRequest" />
+  <xs:complexType name="AllocateConsignmentsWithServiceGroupRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AllocateConsignmentsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceGroupReference" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AllocateConsignmentsWithCarrierServiceRequest" nillable="true" type="tns:AllocateConsignmentsWithCarrierServiceRequest" />
+  <xs:complexType name="AllocateConsignmentsWithCarrierServiceRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AllocateConsignmentsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceReference" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Allocation" nillable="true" type="tns:Allocation" />
+  <xs:element name="BookingReference" nillable="true" type="tns:BookingReference" />
+  <xs:complexType name="BookingReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferenceName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferenceValue" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CarrierConsignment" nillable="true" type="tns:CarrierConsignment" />
+  <xs:complexType name="CarrierConsignment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceForLegAssignedByMpd" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceForLegAssignedByCarrier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceForAllLegsAssignedByMpd" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierServiceReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierAccountReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CollectionWindow" type="tns:CollectionWindow" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsDropOff" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsPickUp" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShopReservationReference" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LegNumber" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierPackages" type="tns:ArrayOfCarrierPackage" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentAllocation" type="tns:ConsignmentAllocation" />
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="tns:ConsignmentState" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EstimatedDeliveryDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OriginalEstimatedDeliveryDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CollectionType" type="tns:CollectionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CostItems" type="tns:ArrayOfCostItem" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ContentsValue" xmlns:q22="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q22:Money" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Contents" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SignatureRequired" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BookingCutOffDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BookingRequestDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BookingReferences" type="tns:ArrayOfBookingReference" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BookingStatus" type="tns:ConsignmentBookingStatus" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentTrackingReferenceAssignedByCarrier" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ManifestDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PreAdviceDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Addresses" type="tns:ArrayOfAddress" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CollectionWindow">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="EarliestCollectionTime" type="tns:TimeSpan" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LatestCollectionTime" type="tns:TimeSpan" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BookingCutOffTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ManifestDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PreAdviceDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EarliestDeliveryTime" type="tns:TimeSpan" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LatestDeliveryTime" type="tns:TimeSpan" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TimeSpan" />
+  <xs:complexType name="ArrayOfCarrierPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CarrierPackage" nillable="true" type="tns:CarrierPackage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CarrierPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Package" type="tns:Package" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfItem" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageReferenceForLegAssignedByCarrier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageReferenceForLegAssignedByMpd" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageReferenceForAllLegsAssignedByMpd" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ActualDeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AttemptedDeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ActualCollectionDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastEventDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="tns:PackageState" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dimensions" xmlns:q23="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q23:Dimensions" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Weight" xmlns:q24="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q24:Weight" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageTrackingReferenceForLegAssignedByCarrier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Charges" type="tns:ArrayOfKeyValuePairOfCustomChargeTypeDecimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CategoryType" nillable="true" type="tns:CategoryType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CategoryTypeExplanation" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="PackageState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AwaitingCollection" />
+      <xs:enumeration value="Collected" />
+      <xs:enumeration value="InTransit" />
+      <xs:enumeration value="Delivered" />
+      <xs:enumeration value="Damaged" />
+      <xs:enumeration value="Missing" />
+      <xs:enumeration value="Lost" />
+      <xs:enumeration value="Delayed" />
+      <xs:enumeration value="AtCollectionPoint" />
+      <xs:enumeration value="AtDropOffPoint" />
+      <xs:enumeration value="CollectionFailed" />
+      <xs:enumeration value="DeliveryFailedCardLeft" />
+      <xs:enumeration value="DeliveryFailed" />
+      <xs:enumeration value="OutForDelivery" />
+      <xs:enumeration value="ReturnToSender" />
+      <xs:enumeration value="ActionRequired" />
+      <xs:enumeration value="InTransitWaiting" />
+      <xs:enumeration value="HeldByCarrier" />
+      <xs:enumeration value="ExchangeFailed" />
+      <xs:enumeration value="AtCustoms" />
+      <xs:enumeration value="CarrierUnableToCollect" />
+      <xs:enumeration value="DeliveredDamaged" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ConsignmentAllocation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierConsignments" type="tns:ArrayOfCarrierConsignment" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AllocationDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConsignmentReference" xmlns:q25="http://microsoft.com/wsdl/types/" type="q25:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceGroupReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceGroupName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCarrierConsignment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CarrierConsignment" nillable="true" type="tns:CarrierConsignment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CollectionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Scheduled" />
+      <xs:enumeration value="AdHoc" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfCostItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CostItem" nillable="true" type="tns:CostItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CostItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CalculatedCost" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CostItemType" type="tns:CostItemType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CostItemType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="DeliveryCharge" />
+      <xs:enumeration value="Surcharge" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfBookingReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BookingReference" nillable="true" type="tns:BookingReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ConsignmentBookingStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Allocated" />
+      <xs:enumeration value="Manifested" />
+      <xs:enumeration value="FailedToAllocate" />
+      <xs:enumeration value="Booked" />
+      <xs:enumeration value="Cancelled" />
+      <xs:enumeration value="AwaitingManifest" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CarrierPackage" nillable="true" type="tns:CarrierPackage" />
+  <xs:element name="Consignment" nillable="true" type="tns:Consignment" />
+  <xs:element name="ConsignmentAuditMessage" nillable="true" type="tns:ConsignmentAuditMessage" />
+  <xs:complexType name="ConsignmentAuditMessage">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" xmlns:q26="http://microsoft.com/wsdl/types/" type="q26:guid" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Timestamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Severity" type="tns:AuditMessageSeverity" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Category" type="tns:ConsignmentAuditMessageCategory" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Username" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AdditionalData" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Details" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AuditMessageSeverity">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Low" />
+      <xs:enumeration value="Medium" />
+      <xs:enumeration value="High" />
+      <xs:enumeration value="Critical" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ConsignmentAuditMessageCategory">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Tracking" />
+      <xs:enumeration value="ConsignmentLifecycle" />
+      <xs:enumeration value="Labels" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConsignmentBase" nillable="true" type="tns:ConsignmentBase" />
+  <xs:element name="ConsignmentCarrierSummaryResponse" nillable="true" type="tns:ConsignmentCarrierSummaryResponse" />
+  <xs:complexType name="ConsignmentCarrierSummaryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Summary" type="tns:ArrayOfConsignmentStateByCarrierService" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfConsignmentStateByCarrierService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsignmentStateByCarrierService" nillable="true" type="tns:ConsignmentStateByCarrierService" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsignmentStateByCarrierService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceReference" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfConsignments" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConsignmentState" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Created" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Address" nillable="true" type="tns:Address" />
+  <xs:element name="ConsignmentLeg" nillable="true" type="tns:ConsignmentLeg" />
+  <xs:element name="ConsignmentSearchTerms" nillable="true" type="tns:ConsignmentSearchTerms" />
+  <xs:complexType name="ConsignmentSearchTerms">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="StartFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EndAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PageSize" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartPage" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreatedDateFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreatedDateTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ScheduledDeliveryDateFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ScheduledDeliveryDateTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippedDateFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippedDateTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestedDeliveryDateFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestedDeliveryDateTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="State" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WeightInGramsFrom" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WeightInGramsTo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierService" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Source" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PostCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValueFrom" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValueTo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LabelsPrinted" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SearchTerm" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StateAttribute" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShippingLocationReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DestinationCountryCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DestinationRegion" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ClientReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentNumber" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConsignmentStateByCarrierService" nillable="true" type="tns:ConsignmentStateByCarrierService" />
+  <xs:element name="ConsignmentStateSummaryResponse" nillable="true" type="tns:ConsignmentStateSummaryResponse" />
+  <xs:complexType name="ConsignmentStateSummaryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfConsignments" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Summary" type="tns:ArrayOfKeyValuePairOfStringInt32" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartFrom" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EndAt" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfKeyValuePairOfStringInt32">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValuePairOfStringInt32" xmlns:q27="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q27:KeyValuePairOfStringInt32" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConsignmentStatusResponse" nillable="true" type="tns:ConsignmentStatusResponse" />
+  <xs:complexType name="ConsignmentStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceForAllLegsAssignedByMpd" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ExpectedDeliveryDate" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApiLink" xmlns:q28="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q28:ApiLink" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateConsignmentRequest" nillable="true" type="tns:CreateConsignmentRequest" />
+  <xs:complexType name="CreateConsignmentRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseCreateConsignmentRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Source" type="tns:Source" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredDeliveryDate" type="tns:RequestedDeliveryDate" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMetaData" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Source">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Api" />
+      <xs:enumeration value="Web" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CustomsDocumentation" nillable="true" type="tns:CustomsDocumentation" />
+  <xs:element name="ConsignmentSummary" nillable="true" type="tns:ConsignmentSummary" />
+  <xs:complexType name="ConsignmentSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateCreated" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="tns:ConsignmentState" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippingDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceReference" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AllocationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Source" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceGroupName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceGroupReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DestinationAddressLine1" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DestinationAddressTown" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DestinationAddressPostcode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DestinationAddressCountry" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DestinationShippingLocationReference" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestedDeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestedDeliveryDateIsToBeExactlyOnTheDateSpecified" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LabelsPrinted" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateLabelsWereFirstPrinted" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EstimatedDeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippingTerms" nillable="true" type="tns:ShippingTerms" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FailedAllocationAttemptedAllocationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FailedAllocationMessage" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FailedAllocationMpdCarrierServiceReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FailedAllocationMpdCarrierServiceGroupName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FailedAllocationMpdCarrierServiceGroupReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FailedAllocationMpdCarrierServiceName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsLate" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CollectionDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AttemptedDeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" xmlns:q29="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q29:Money" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Weight" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApiLink" xmlns:q30="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q30:ApiLink" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FailedManifestMessage" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FailedManifestTimeStamp" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FailedAllocation" nillable="true" type="tns:FailedAllocation" />
+  <xs:element name="Item" nillable="true" type="tns:Item" />
+  <xs:element name="LateConsignmentsResponse" nillable="true" type="tns:LateConsignmentsResponse" />
+  <xs:complexType name="LateConsignmentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalNumberOfLateConsignments" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentSummaries" type="tns:ArrayOfConsignmentSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfConsignmentSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsignmentSummary" nillable="true" type="tns:ConsignmentSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LateConsignmentSummary" nillable="true" type="tns:LateConsignmentSummary" />
+  <xs:complexType name="LateConsignmentSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierReference" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DaysLate" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfConsignments" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApiLink" xmlns:q31="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q31:ApiLink" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LateConsignmentSummaryResponse" nillable="true" type="tns:LateConsignmentSummaryResponse" />
+  <xs:complexType name="LateConsignmentSummaryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="LateConsignments" type="tns:ArrayOfLateConsignmentSummary" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OnTimeConsignments" type="tns:ArrayOfOnTimeConsignmentSummary" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LateConsignmentsFromCustomerPerspective" type="tns:ArrayOfLateConsignmentSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLateConsignmentSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LateConsignmentSummary" nillable="true" type="tns:LateConsignmentSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfOnTimeConsignmentSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OnTimeConsignmentSummary" nillable="true" type="tns:OnTimeConsignmentSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OnTimeConsignmentSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierReference" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfConsignments" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LocationInformation" nillable="true" type="tns:LocationInformation" />
+  <xs:element name="ManifestConsignmentsRequest" nillable="true" type="tns:ManifestConsignmentsRequest" />
+  <xs:complexType name="ManifestConsignmentsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferences" type="tns:ArrayOfString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ManifestFileInfo" nillable="true" type="tns:ManifestFileInfo" />
+  <xs:complexType name="ManifestFileInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ManifestReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ManifestFileStorageContainer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ManifestFileName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BookingsCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MatchingConsignmentsResponse" nillable="true" type="tns:MatchingConsignmentsResponse" />
+  <xs:complexType name="MatchingConsignmentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentSummaries" type="tns:ArrayOfConsignmentSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MetaData" nillable="true" type="tns:MetaData" />
+  <xs:element name="MetaDataFilter" nillable="true" type="tns:MetaDataFilter" />
+  <xs:element name="MoveItemRequest" nillable="true" type="tns:MoveItemRequest" />
+  <xs:complexType name="MoveItemRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ItemReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TargetPackageReference" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OnTimeConsignmentSummary" nillable="true" type="tns:OnTimeConsignmentSummary" />
+  <xs:element name="Package" nillable="true" type="tns:Package" />
+  <xs:element name="ReferenceProvidedByCustomerRequest" nillable="true" type="tns:ReferenceProvidedByCustomerRequest" />
+  <xs:complexType name="ReferenceProvidedByCustomerRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestedDeliveryDate" nillable="true" type="tns:RequestedDeliveryDate" />
+  <xs:element name="SetConsignmentDetailsRequest" nillable="true" type="tns:SetConsignmentDetailsRequest" />
+  <xs:complexType name="SetConsignmentDetailsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestedDeliveryDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippingDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsExactRequestedDeliveryDate" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateConsignmentRequest" nillable="true" type="tns:UpdateConsignmentRequest" />
+  <xs:complexType name="UpdateConsignmentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequestedDeliveryDate" type="tns:RequestedDeliveryDate" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippingDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustomsDocumentation" type="tns:CustomsDocumentation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Addresses" type="tns:ArrayOfAddress" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMetaData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:ArrayOfUpdatePackageRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUpdatePackageRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UpdatePackageRequest" nillable="true" type="tns:UpdatePackageRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UpdatePackageRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Weight" xmlns:q32="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q32:Weight" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dimensions" xmlns:q33="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q33:Dimensions" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" xmlns:q34="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q34:Money" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageSizeReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Barcode" xmlns:q35="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q35:Barcode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMetaData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfUpdateItemRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUpdateItemRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UpdateItemRequest" nillable="true" type="tns:UpdateItemRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UpdateItemRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Sku" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Model" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryOfOrigin" xmlns:q36="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q36:Country" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HarmonisationCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Weight" xmlns:q37="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q37:Weight" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dimensions" xmlns:q38="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q38:Dimensions" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" xmlns:q39="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q39:Money" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ItemReferenceProvidedByCustomer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Barcode" xmlns:q40="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q40:Barcode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMetaData" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UnitOfQuantity" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ItemUnit" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HarmonisationKeyWords" type="tns:ArrayOfString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateItemRequest" nillable="true" type="tns:UpdateItemRequest" />
+  <xs:element name="UpdatePackageRequest" nillable="true" type="tns:UpdatePackageRequest" />
+</xs:schema>

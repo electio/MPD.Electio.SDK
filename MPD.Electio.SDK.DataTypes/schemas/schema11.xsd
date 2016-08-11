@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.CarrierBooking" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.CarrierBooking" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ConsignmentBookingStatus" type="tns:ConsignmentBookingStatus" />
+  <xs:simpleType name="ConsignmentBookingStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Allocated" />
+      <xs:enumeration value="Manifested" />
+      <xs:enumeration value="FailedToAllocate" />
+      <xs:enumeration value="Booked" />
+      <xs:enumeration value="Cancelled" />
+      <xs:enumeration value="AwaitingManifest" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

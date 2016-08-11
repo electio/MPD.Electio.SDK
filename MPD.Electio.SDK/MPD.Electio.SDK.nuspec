@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MPD.Electio.SDK</id>
+    <version>$version$</version>
+    <title>Electio Internal SDK</title>
+    <authors>MPD Group</authors>
+    <owners>MPD Group</owners>
+    <licenseUrl>http://www.electioapp.com/</licenseUrl>
+    <projectUrl>http://www.electioapp.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Electio SDK</description>
+    <copyright>Copyright 2016</copyright>
+	<dependencies>
+	    <dependency id="MPD.Electio.SDK.DataTypes" version="$version$" />
+        <dependency id="AutoMapper" version="4.1.1" />
+        <dependency id="Newtonsoft.Json" version="8.0.2" />
+	</dependencies>
+  </metadata>
+</package>

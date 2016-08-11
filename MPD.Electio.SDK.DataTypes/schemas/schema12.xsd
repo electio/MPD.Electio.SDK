@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Accounts" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Accounts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://microsoft.com/wsdl/types/" />
+  <xs:element name="Account" nillable="true" type="tns:Account" />
+  <xs:complexType name="Account">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Reference" xmlns:q1="http://microsoft.com/wsdl/types/" type="q1:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Roles" type="tns:ArrayOfRole" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CustomerReference" xmlns:q2="http://microsoft.com/wsdl/types/" type="q2:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Title" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FirstName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LastName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LanguageCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TimeZoneId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TimeZoneInfoId" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LandLineNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShippingLocationRestrictions" type="tns:ArrayOfString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Role" nillable="true" type="tns:Role" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Role">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CustomerReference" xmlns:q3="http://microsoft.com/wsdl/types/" type="q3:guid" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Reference" xmlns:q4="http://microsoft.com/wsdl/types/" type="q4:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Permissions" type="tns:ArrayOfPermission" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPermission">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Permission" nillable="true" type="tns:Permission" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Permission">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Action" type="tns:AccessActions" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Access" type="tns:Access" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AccessActions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="GetCustomer" />
+      <xs:enumeration value="GetAccount" />
+      <xs:enumeration value="UpdatePassword" />
+      <xs:enumeration value="UpdateAccount" />
+      <xs:enumeration value="UpdateCustomer" />
+      <xs:enumeration value="CreateAccount" />
+      <xs:enumeration value="UpdateCustomerSubscription" />
+      <xs:enumeration value="GetAllCarrierServices" />
+      <xs:enumeration value="AddCarrierService" />
+      <xs:enumeration value="UpdateCarrierService" />
+      <xs:enumeration value="GetCustomRoles" />
+      <xs:enumeration value="CreateCustomRole" />
+      <xs:enumeration value="DeleteCustomRole" />
+      <xs:enumeration value="UpdateCustomRole" />
+      <xs:enumeration value="GetRoleAccounts" />
+      <xs:enumeration value="AddAccountToRole" />
+      <xs:enumeration value="RemoveAccountFromRole" />
+      <xs:enumeration value="CreateShippingLocation" />
+      <xs:enumeration value="UpdateShippingLocation" />
+      <xs:enumeration value="DeleteShippingLocation" />
+      <xs:enumeration value="CreateServiceGroup" />
+      <xs:enumeration value="UpdateServiceGroup" />
+      <xs:enumeration value="DeleteServiceGroup" />
+      <xs:enumeration value="CreatePackageSize" />
+      <xs:enumeration value="PackageUpdateSizes" />
+      <xs:enumeration value="PackageDeleteSizes" />
+      <xs:enumeration value="SetDefaultPackageSize" />
+      <xs:enumeration value="GetCollectionCalendar" />
+      <xs:enumeration value="UpdateCollectionCalendar" />
+      <xs:enumeration value="GetServiceProfile" />
+      <xs:enumeration value="UpdateServiceProfile" />
+      <xs:enumeration value="CreateServiceProfile" />
+      <xs:enumeration value="CSGetCustomers" />
+      <xs:enumeration value="GetConsignments" />
+      <xs:enumeration value="UpdateConsignments" />
+      <xs:enumeration value="CreateConsignments" />
+      <xs:enumeration value="MovePackageItems" />
+      <xs:enumeration value="UpdatePackages" />
+      <xs:enumeration value="DeletePackages" />
+      <xs:enumeration value="GetQuotes" />
+      <xs:enumeration value="GetEventTracking" />
+      <xs:enumeration value="UploadNewRatesCost" />
+      <xs:enumeration value="SetVolumeDiscounts" />
+      <xs:enumeration value="GetRatesTemplate" />
+      <xs:enumeration value="GetRatesForConsignment" />
+      <xs:enumeration value="GetCustomerDocument" />
+      <xs:enumeration value="AddSubscriptionPlan" />
+      <xs:enumeration value="EditSubscriptionPlan" />
+      <xs:enumeration value="AddCustomer" />
+      <xs:enumeration value="EditCustomer" />
+      <xs:enumeration value="ToleranceAdministration" />
+      <xs:enumeration value="ManageAllShippingLocations" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Access">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="AccountManagement" />
+      <xs:enumeration value="CustomerManagement" />
+      <xs:enumeration value="CarrierServiceManagement" />
+      <xs:enumeration value="RoleManagement" />
+      <xs:enumeration value="ShippingLocationManagement" />
+      <xs:enumeration value="ServiceGroupManagement" />
+      <xs:enumeration value="PackageSizeManagement" />
+      <xs:enumeration value="CollectionManagement" />
+      <xs:enumeration value="ServiceProfileManagement" />
+      <xs:enumeration value="CustomerServiceManagement" />
+      <xs:enumeration value="ConsignmentManagement" />
+      <xs:enumeration value="PackageManagement" />
+      <xs:enumeration value="QuoteManagement" />
+      <xs:enumeration value="TrackingManagement" />
+      <xs:enumeration value="RatesManagement" />
+      <xs:enumeration value="SubscriptionPlanManagement" />
+      <xs:enumeration value="ReportManagement" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreditAccountInfo" nillable="true" type="tns:CreditAccountInfo" />
+  <xs:complexType name="CreditAccountInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CreditLimit" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PaymentTerms" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

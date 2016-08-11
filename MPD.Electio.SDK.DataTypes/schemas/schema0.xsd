@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://microsoft.com/wsdl/types/" />
+  <xs:import namespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Caching" />
+  <xs:element name="CustomerCarrierConfiguration" nillable="true" type="tns:CustomerCarrierConfiguration" />
+  <xs:complexType name="CustomerCarrierConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CustomerReference" xmlns:q1="http://microsoft.com/wsdl/types/" type="q1:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Configurations" type="tns:ArrayOfConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Configuration" nillable="true" type="tns:Configuration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Configuration">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Caching" base="q2:BaseCacheableEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Value" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CarrierService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsDropOff" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsPickUp" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsTimed" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MpdCarrierService">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Caching" base="q3:BaseCacheableEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierReference" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CarrierName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CarrierAccountOwner" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:CustomerSubscriptionStatus" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Journey" type="tns:ArrayOfLeg" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Source" type="tns:MpdCarrierServiceSource" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:MpdCarrierServiceType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="CustomerSubscriptionStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Available" />
+      <xs:enumeration value="Requested" />
+      <xs:enumeration value="Disabled" />
+      <xs:enumeration value="Enabled" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfLeg">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Leg" nillable="true" type="tns:Leg" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Leg">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="JourneyStage" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierService" type="tns:CarrierService" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierAccountReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeliveryHub" type="tns:Hub" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CostItems" type="tns:ArrayOfCostItem" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VolumetricParcelWeight" type="tns:ArrayOfVolumetricWeight" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CollectionType" type="tns:CollectionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Hub">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="HubAddress" type="tns:Address" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ExtraDaysToTransitTime" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Caching" base="q4:BaseCacheableEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Contact" type="tns:Contact" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CompanyName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ShippingLocationReference" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CustomerName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AddressLine1" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AddressLine2" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AddressLine3" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Town" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Postcode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Country" type="tns:Country" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SpecialInstructions" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LatLong" type="tns:LatLong" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Contact">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Reference" nillable="true" xmlns:q5="http://microsoft.com/wsdl/types/" type="q5:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Title" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FirstName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LastName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Position" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Telephone" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Mobile" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LandLine" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Country">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IsoCode" type="tns:IsoCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IsoCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TwoLetterCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LatLong">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Latitude" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Longitude" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCostItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CostItem" nillable="true" type="tns:CostItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CostItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CalculatedCost" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CostItemType" type="tns:CostItemType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CostItemType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="DeliveryCharge" />
+      <xs:enumeration value="Surcharge" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfVolumetricWeight">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VolumetricWeight" nillable="true" type="tns:VolumetricWeight" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VolumetricWeight">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Weight" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CollectionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Scheduled" />
+      <xs:enumeration value="AdHoc" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MpdCarrierServiceSource">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Internal" />
+      <xs:enumeration value="External" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MpdCarrierServiceType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Scheduled" />
+          <xs:enumeration value="AdHoc" />
+          <xs:enumeration value="PickUp" />
+          <xs:enumeration value="DropOff" />
+          <xs:enumeration value="Timed" />
+          <xs:enumeration value="Consolidated" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="VatRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryIsoCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:VatRateType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Rate" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="VatRateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Standard" />
+      <xs:enumeration value="Reduced" />
+      <xs:enumeration value="Zero" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Currency">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IsoCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObjectBase" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Label" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WindowBase" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Start" type="xs:duration" />
+      <xs:element minOccurs="0" maxOccurs="1" name="End" type="xs:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Weight">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Kg" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Money">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:Currency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Dimensions">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Width" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Height" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Barcode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BarcodeType" type="tns:BarcodeType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BarcodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AustraliaPostalCode" />
+      <xs:enumeration value="AztecCode" />
+      <xs:enumeration value="Codabar" />
+      <xs:enumeration value="Code11" />
+      <xs:enumeration value="Code128" />
+      <xs:enumeration value="Code39" />
+      <xs:enumeration value="ExtendedCode39" />
+      <xs:enumeration value="Code93" />
+      <xs:enumeration value="CompositeCode" />
+      <xs:enumeration value="DataMatrix" />
+      <xs:enumeration value="EAN13" />
+      <xs:enumeration value="EAN8" />
+      <xs:enumeration value="EANBookland" />
+      <xs:enumeration value="Industrial2Of5" />
+      <xs:enumeration value="Interleaved2Of5" />
+      <xs:enumeration value="ITF14" />
+      <xs:enumeration value="LOGMARS" />
+      <xs:enumeration value="Maxicode" />
+      <xs:enumeration value="MSI" />
+      <xs:enumeration value="OPC" />
+      <xs:enumeration value="PDF417" />
+      <xs:enumeration value="Plessey" />
+      <xs:enumeration value="Postnet" />
+      <xs:enumeration value="QRCode" />
+      <xs:enumeration value="SCC14" />
+      <xs:enumeration value="Standard2Of5" />
+      <xs:enumeration value="UCCEAN218" />
+      <xs:enumeration value="UCCEANShippingContainerCode" />
+      <xs:enumeration value="UPCShippingContainerCode" />
+      <xs:enumeration value="UPCA" />
+      <xs:enumeration value="UPCE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="KeyValuePairOfCustomChargeTypeDecimal">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Key" type="tns:CustomChargeType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CustomChargeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Others" />
+      <xs:enumeration value="SalesTax" />
+      <xs:enumeration value="Duty" />
+      <xs:enumeration value="Excise" />
+      <xs:enumeration value="Insurance" />
+      <xs:enumeration value="DisountRebate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AdditionalInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="KeyValuePairOfStringInt32">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApiLink">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Rel" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Href" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccessActions" type="tns:AccessActions" />
+  <xs:simpleType name="AccessActions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="GetCustomer" />
+      <xs:enumeration value="GetAccount" />
+      <xs:enumeration value="UpdatePassword" />
+      <xs:enumeration value="UpdateAccount" />
+      <xs:enumeration value="UpdateCustomer" />
+      <xs:enumeration value="CreateAccount" />
+      <xs:enumeration value="UpdateCustomerSubscription" />
+      <xs:enumeration value="GetAllCarrierServices" />
+      <xs:enumeration value="AddCarrierService" />
+      <xs:enumeration value="UpdateCarrierService" />
+      <xs:enumeration value="GetCustomRoles" />
+      <xs:enumeration value="CreateCustomRole" />
+      <xs:enumeration value="DeleteCustomRole" />
+      <xs:enumeration value="UpdateCustomRole" />
+      <xs:enumeration value="GetRoleAccounts" />
+      <xs:enumeration value="AddAccountToRole" />
+      <xs:enumeration value="RemoveAccountFromRole" />
+      <xs:enumeration value="CreateShippingLocation" />
+      <xs:enumeration value="UpdateShippingLocation" />
+      <xs:enumeration value="DeleteShippingLocation" />
+      <xs:enumeration value="CreateServiceGroup" />
+      <xs:enumeration value="UpdateServiceGroup" />
+      <xs:enumeration value="DeleteServiceGroup" />
+      <xs:enumeration value="CreatePackageSize" />
+      <xs:enumeration value="PackageUpdateSizes" />
+      <xs:enumeration value="PackageDeleteSizes" />
+      <xs:enumeration value="SetDefaultPackageSize" />
+      <xs:enumeration value="GetCollectionCalendar" />
+      <xs:enumeration value="UpdateCollectionCalendar" />
+      <xs:enumeration value="GetServiceProfile" />
+      <xs:enumeration value="UpdateServiceProfile" />
+      <xs:enumeration value="CreateServiceProfile" />
+      <xs:enumeration value="CSGetCustomers" />
+      <xs:enumeration value="GetConsignments" />
+      <xs:enumeration value="UpdateConsignments" />
+      <xs:enumeration value="CreateConsignments" />
+      <xs:enumeration value="MovePackageItems" />
+      <xs:enumeration value="UpdatePackages" />
+      <xs:enumeration value="DeletePackages" />
+      <xs:enumeration value="GetQuotes" />
+      <xs:enumeration value="GetEventTracking" />
+      <xs:enumeration value="UploadNewRatesCost" />
+      <xs:enumeration value="SetVolumeDiscounts" />
+      <xs:enumeration value="GetRatesTemplate" />
+      <xs:enumeration value="GetRatesForConsignment" />
+      <xs:enumeration value="GetCustomerDocument" />
+      <xs:enumeration value="AddSubscriptionPlan" />
+      <xs:enumeration value="EditSubscriptionPlan" />
+      <xs:enumeration value="AddCustomer" />
+      <xs:enumeration value="EditCustomer" />
+      <xs:enumeration value="ToleranceAdministration" />
+      <xs:enumeration value="ManageAllShippingLocations" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AdditionalInformation" nillable="true" type="tns:AdditionalInformation" />
+  <xs:element name="Address" nillable="true" type="tns:Address" />
+  <xs:element name="ApiLink" nillable="true" type="tns:ApiLink" />
+  <xs:element name="Barcode" nillable="true" type="tns:Barcode" />
+  <xs:element name="CarrierService" nillable="true" type="tns:CarrierService" />
+  <xs:element name="CompensationAndValue" nillable="true" type="tns:CompensationAndValue" />
+  <xs:complexType name="CompensationAndValue">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MaxParcelValue" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GetEnhancedCompensation" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CompensationThreshold" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Configuration" nillable="true" type="tns:Configuration" />
+  <xs:element name="Contact" nillable="true" type="tns:Contact" />
+  <xs:element name="Country" nillable="true" type="tns:Country" />
+  <xs:element name="Currency" nillable="true" type="tns:Currency" />
+  <xs:element name="DimensionRestriction" nillable="true" type="tns:DimensionRestriction" />
+  <xs:complexType name="DimensionRestriction">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DimensionType" type="tns:DimensionType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RangeFrom" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RangeTo" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DimensionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Length" />
+      <xs:enumeration value="Girth" />
+      <xs:enumeration value="AbsoluteWeight" />
+      <xs:enumeration value="CombinedDimensions" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Dimensions" nillable="true" type="tns:Dimensions" />
+  <xs:element name="DomesticLocationRestriction" nillable="true" type="tns:DomesticLocationRestriction" />
+  <xs:complexType name="DomesticLocationRestriction">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PostcodeArea" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PostcodeDistrict" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PostcodeSector" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PostcodeUnit" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Hub" nillable="true" type="tns:Hub" />
+  <xs:element name="InternationalLocationRestriction" nillable="true" type="tns:InternationalLocationRestriction" />
+  <xs:complexType name="InternationalLocationRestriction">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Postcode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Town" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="County" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryTwoLetterIsoCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IsoCode" nillable="true" type="tns:IsoCode" />
+  <xs:element name="LatLong" nillable="true" type="tns:LatLong" />
+  <xs:element name="Leg" nillable="true" type="tns:Leg" />
+  <xs:element name="Money" nillable="true" type="tns:Money" />
+  <xs:element name="MpdCarrierService" nillable="true" type="tns:MpdCarrierService" />
+  <xs:element name="MpdCarrierServiceGroup" nillable="true" type="tns:MpdCarrierServiceGroup" />
+  <xs:complexType name="MpdCarrierServiceGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CustomerReference" xmlns:q6="http://microsoft.com/wsdl/types/" type="q6:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierServiceProfiles" type="tns:ArrayOfMpdCarrierServiceProfile" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsEnabled" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfMpdCarrierServiceProfile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MpdCarrierServiceProfile" nillable="true" type="tns:MpdCarrierServiceProfile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MpdCarrierServiceProfile">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Caching" base="q7:BaseCacheableEntity">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsEnabled" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CustomerReference" xmlns:q8="http://microsoft.com/wsdl/types/" type="q8:guid" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MpdCarrierService" type="tns:MpdCarrierService" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DimensionRestrictions" type="tns:ArrayOfDimensionRestriction" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DomesticLocationRestrictions" type="tns:ArrayOfDomesticLocationRestriction" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InternationalLocationRestrictions" type="tns:ArrayOfInternationalLocationRestriction" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CompensationAndValue" type="tns:CompensationAndValue" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDimensionRestriction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DimensionRestriction" nillable="true" type="tns:DimensionRestriction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDomesticLocationRestriction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DomesticLocationRestriction" nillable="true" type="tns:DomesticLocationRestriction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfInternationalLocationRestriction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InternationalLocationRestriction" nillable="true" type="tns:InternationalLocationRestriction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MpdCarrierServiceProfile" nillable="true" type="tns:MpdCarrierServiceProfile" />
+  <xs:element name="ObjectBase" nillable="true" type="tns:ObjectBase" />
+  <xs:element name="PackageSize" nillable="true" type="tns:PackageSize" />
+  <xs:complexType name="PackageSize">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CustomerReference" xmlns:q9="http://microsoft.com/wsdl/types/" type="q9:guid" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Width" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Height" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Weight" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsDefault" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PagedList" nillable="true" type="tns:SerializableException" />
+  <xs:complexType name="SerializableException">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="HelpLink" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Source" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StackTrace" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InnerException" type="tns:SerializableException" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfKeyValuePairOfObjectObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfKeyValuePairOfObjectObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValuePairOfObjectObject" type="tns:KeyValuePairOfObjectObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="KeyValuePairOfObjectObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TimeZone" nillable="true" type="tns:TimeZone" />
+  <xs:complexType name="TimeZone">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VatRate" nillable="true" type="tns:VatRate" />
+  <xs:element name="VolumetricWeight" nillable="true" type="tns:VolumetricWeight" />
+  <xs:element name="Weight" nillable="true" type="tns:Weight" />
+  <xs:element name="WindowBase" nillable="true" type="tns:WindowBase" />
+</xs:schema>

@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1A8AF7E6-5493-44F1-81C0-E0A737467DD9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MPD.Electio.SDK.DataTypes</RootNamespace>
+    <AssemblyName>MPD.Electio.SDK.DataTypes</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounts\Account.cs" />
+    <Compile Include="Accounts\CreditAccountInfo.cs" />
+    <Compile Include="Attributes\ShippedAttribute.cs" />
+    <Compile Include="Attributes\UiDisplaySeverityAttribute.cs" />
+    <Compile Include="Caching\BaseCacheableEntity.cs" />
+    <Compile Include="Caching\CacheKey.cs" />
+    <Compile Include="CarrierBooking\Enums\ConsignmentBookingStatus.cs" />
+    <Compile Include="CarrierServiceDirectory\Carrier.cs" />
+    <Compile Include="CarrierServiceDirectory\MpdCarrierServiceSource.cs" />
+    <Compile Include="CarrierServiceDirectory\MpdCarrierServiceType.cs" />
+    <Compile Include="Common\AccessActions.cs" />
+    <Compile Include="Common\AdditionalInformation.cs" />
+    <Compile Include="Common\Address.cs" />
+    <Compile Include="Common\ApiLink.cs" />
+    <Compile Include="Common\Barcode.cs" />
+    <Compile Include="Common\CarrierService.cs" />
+    <Compile Include="Common\CompensationAndValue.cs" />
+    <Compile Include="Common\Configuration.cs" />
+    <Compile Include="Common\Contact.cs" />
+    <Compile Include="Common\Country.cs" />
+    <Compile Include="Common\Currency.cs" />
+    <Compile Include="Common\CustomerCarrierConfiguration.cs" />
+    <Compile Include="Common\DimensionRestriction.cs" />
+    <Compile Include="Common\Dimensions.cs" />
+    <Compile Include="Common\DomesticLocationRestriction.cs" />
+    <Compile Include="Common\Enums\BarcodeType.cs" />
+    <Compile Include="Common\Enums\CollectionType.cs" />
+    <Compile Include="Common\Enums\ContentClassification.cs" />
+    <Compile Include="Common\Enums\ContentClassificationDetails.cs" />
+    <Compile Include="Common\Enums\CustomsDocType.cs" />
+    <Compile Include="Common\Enums\DimensionType.cs" />
+    <Compile Include="Common\Enums\MpdCarrierServiceType.cs" />
+    <Compile Include="Common\Enums\PaymentTerms.cs" />
+    <Compile Include="Common\Enums\PhoneNumberType.cs" />
+    <Compile Include="Common\Enums\StorageType.cs" />
+    <Compile Include="Common\Enums\TitleType.cs" />
+    <Compile Include="Common\Enums\VatRateType.cs" />
+    <Compile Include="Common\Hub.cs" />
+    <Compile Include="Common\InternationalLocationRestriction.cs" />
+    <Compile Include="Common\IsoCode.cs" />
+    <Compile Include="Common\LatLong.cs" />
+    <Compile Include="Common\Leg.cs" />
+    <Compile Include="Common\Money.cs" />
+    <Compile Include="Common\MpdCarrierService.cs" />
+    <Compile Include="Common\MpdCarrierServiceGroup.cs" />
+    <Compile Include="Common\MpdCarrierServiceProfile.cs" />
+    <Compile Include="Common\ObjectBase.cs" />
+    <Compile Include="Common\PackageSize.cs" />
+    <Compile Include="Common\PagedList.cs" />
+    <Compile Include="Common\SerializableException.cs" />
+    <Compile Include="Common\TimeZone.cs" />
+    <Compile Include="Common\ValidationError.cs" />
+    <Compile Include="Common\VatRate.cs" />
+    <Compile Include="Common\VolumetricWeight.cs" />
+    <Compile Include="Common\Weight.cs" />
+    <Compile Include="Common\WindowBase.cs" />
+    <Compile Include="Consignments\AddItemRequest.cs" />
+    <Compile Include="Consignments\AllocateAllConsignmentsRequest.cs" />
+    <Compile Include="Consignments\AllocateAllConsignmentsWithCarrierServiceGroupRequest.cs" />
+    <Compile Include="Consignments\AllocateAllConsignmentsWithCarrierServiceRequest.cs" />
+    <Compile Include="Consignments\AllocateConsignmentsRequest.cs" />
+    <Compile Include="Consignments\AllocateConsignmentsWithCarrierServiceGroupRequest.cs" />
+    <Compile Include="Consignments\AllocateConsignmentsWithCarrierServiceRequest.cs" />
+    <Compile Include="Consignments\Allocation.cs" />
+    <Compile Include="Common\KeyValuePair.cs" />
+    <Compile Include="Consignments\BaseCreateConsignmentRequest.cs" />
+    <Compile Include="Consignments\GetCustomsDocumentationResponse.cs" />
+    <Compile Include="Consignments\Enums\AuditMessageSeverity.cs" />
+    <Compile Include="Consignments\BookingReference.cs" />
+    <Compile Include="Consignments\CarrierConsignment.cs" />
+    <Compile Include="Consignments\CarrierPackage.cs" />
+    <Compile Include="Consignments\Enums\CategoryType.cs" />
+    <Compile Include="Consignments\Consignment.cs" />
+    <Compile Include="Consignments\ConsignmentAllocation.cs" />
+    <Compile Include="Consignments\ConsignmentAuditMessage.cs" />
+    <Compile Include="Consignments\Enums\ConsignmentAuditMessageCategory.cs" />
+    <Compile Include="Consignments\ConsignmentBase.cs" />
+    <Compile Include="Consignments\ConsignmentCarrierSummaryResponse.cs" />
+    <Compile Include="Consignments\Address.cs" />
+    <Compile Include="Consignments\ConsignmentLeg.cs" />
+    <Compile Include="Consignments\ConsignmentSearchTerms.cs" />
+    <Compile Include="Consignments\Enums\ConsignmentState.cs" />
+    <Compile Include="Consignments\ConsignmentStateByCarrierService.cs" />
+    <Compile Include="Consignments\ConsignmentStates.cs" />
+    <Compile Include="Consignments\ConsignmentStateSummaryResponse.cs" />
+    <Compile Include="Consignments\ConsignmentStatusResponse.cs" />
+    <Compile Include="Consignments\CreateConsignmentRequest.cs" />
+    <Compile Include="Consignments\CustomsDocumentation.cs" />
+    <Compile Include="Consignments\ConsignmentSummary.cs" />
+    <Compile Include="Consignments\Enums\CarrierConsignmentBookingStatus.cs" />
+    <Compile Include="Consignments\Enums\ConsignmentAddressType.cs" />
+    <Compile Include="Consignments\Enums\ConsignmentSource.cs" />
+    <Compile Include="Consignments\Enums\CustomChargeType.cs" />
+    <Compile Include="Consignments\Enums\MetaDataType.cs" />
+    <Compile Include="Consignments\FailedAllocation.cs" />
+    <Compile Include="Consignments\FileUpload\FileImportResult.cs" />
+    <Compile Include="Consignments\FileUpload\FileUploadInfo.cs" />
+    <Compile Include="Consignments\FileUpload\FileUploadRequest.cs" />
+    <Compile Include="Consignments\FileUpload\FileUploadResponse.cs" />
+    <Compile Include="Consignments\FileUpload\FileValidationResult.cs" />
+    <Compile Include="Consignments\FileUpload\MPDUploadField.cs" />
+    <Compile Include="Consignments\FileUpload\UpdateFileMappingsRequest.cs" />
+    <Compile Include="Consignments\FileUpload\UploadColumnMapping.cs" />
+    <Compile Include="Consignments\FileUpload\UploadFileHistory.cs" />
+    <Compile Include="Consignments\FileUpload\UploadHeaderColumn.cs" />
+    <Compile Include="Consignments\Item.cs" />
+    <Compile Include="Consignments\LateConsignmentsResponse.cs" />
+    <Compile Include="Consignments\LateConsignmentSummary.cs" />
+    <Compile Include="Consignments\LateConsignmentSummaryResponse.cs" />
+    <Compile Include="Consignments\LocationInformation.cs" />
+    <Compile Include="Consignments\ManifestConsignmentsRequest.cs" />
+    <Compile Include="Consignments\ManifestFileInfo.cs" />
+    <Compile Include="Consignments\MatchingConsignmentsResponse.cs" />
+    <Compile Include="Consignments\MetaData.cs" />
+    <Compile Include="Consignments\MetaDataFilter.cs" />
+    <Compile Include="Consignments\MoveItemRequest.cs" />
+    <Compile Include="Consignments\OnTimeConsignmentSummary.cs" />
+    <Compile Include="Consignments\Package.cs" />
+    <Compile Include="Consignments\Enums\PackageState.cs" />
+    <Compile Include="Consignments\ReferenceProvidedByCustomerRequest.cs" />
+    <Compile Include="Consignments\RequestedDeliveryDate.cs" />
+    <Compile Include="Consignments\SetConsignmentDetailsRequest.cs" />
+    <Compile Include="Consignments\Enums\ShippingTerms.cs" />
+    <Compile Include="Consignments\UpdateConsignmentRequest.cs" />
+    <Compile Include="Consignments\UpdateItemRequest.cs" />
+    <Compile Include="Consignments\UpdatePackageRequest.cs" />
+    <Compile Include="Consignments\WithMessage.cs" />
+    <Compile Include="DeliveryOptions\DeliveryOption.cs" />
+    <Compile Include="DeliveryOptions\DeliveryOptionDetails.cs" />
+    <Compile Include="DeliveryOptions\DeliveryOptionsRequest.cs" />
+    <Compile Include="DeliveryOptions\DeliveryOptionsResponse.cs" />
+    <Compile Include="DeliveryOptions\DeliveryOptionSummary.cs" />
+    <Compile Include="DeliveryOptions\DeliveryWindow.cs" />
+    <Compile Include="DeliveryOptions\EstimatedDeliveryDate.cs" />
+    <Compile Include="DeliveryOptions\Location.cs" />
+    <Compile Include="DeliveryOptions\OpeningTime.cs" />
+    <Compile Include="DeliveryOptions\OpeningTimes.cs" />
+    <Compile Include="DeliveryOptions\PickupOptionsRequest.cs" />
+    <Compile Include="DeliveryOptions\PickupOptionsResponse.cs" />
+    <Compile Include="DeliveryOptions\PotentialConsignment.cs" />
+    <Compile Include="DeliveryOptions\Reservation.cs" />
+    <Compile Include="Extensions\CloneExtensions.cs" />
+    <Compile Include="Extensions\HttpClientExtensions.cs" />
+    <Compile Include="Extensions\MpdCarrierServiceExtensions.cs" />
+    <Compile Include="Extensions\PermissionExtensions.cs" />
+    <Compile Include="ICacheable.cs" />
+    <Compile Include="ICacheableList.cs" />
+    <Compile Include="LabelGeneration\GetLabelsRequest.cs" />
+    <Compile Include="LabelGeneration\GetLabelsResponse.cs" />
+    <Compile Include="LabelGeneration\LabelsRequest.cs" />
+    <Compile Include="LabelGeneration\PageSize.cs" />
+    <Compile Include="Payments\InvoiceStatus.cs" />
+    <Compile Include="Payments\InvoiceSummary.cs" />
+    <Compile Include="Payments\InvoiceType.cs" />
+    <Compile Include="Profile\ShippingLocation.cs" />
+    <Compile Include="Profile\ShippingLocationAccount.cs" />
+    <Compile Include="Profile\ShippingLocationType.cs" />
+    <Compile Include="Quotes\Quote.cs" />
+    <Compile Include="Quotes\QuoteRequest.cs" />
+    <Compile Include="Quotes\QuoteResult.cs" />
+    <Compile Include="Quotes\QuoteSurcharge.cs" />
+    <Compile Include="Quotes\UnqualifiedService.cs" />
+    <Compile Include="Rates\CostItem.cs" />
+    <Compile Include="Rates\Enums\ApplicationType..cs" />
+    <Compile Include="Rates\Enums\CalculationModel.cs" />
+    <Compile Include="Rates\Enums\CostItemType.cs" />
+    <Compile Include="Rates\Enums\SurchargeType.cs" />
+    <Compile Include="Rates\Rate.cs" />
+    <Compile Include="Rates\Surcharge.cs" />
+    <Compile Include="Rates\SurchargeBase.cs" />
+    <Compile Include="Rates\Unit.cs" />
+    <Compile Include="Reconciliation\Tolerance.cs" />
+    <Compile Include="Reports\CreateReportRequest.cs" />
+    <Compile Include="Reports\DownloadReportResponse.cs" />
+    <Compile Include="Reports\Enums\ReportLevel.cs" />
+    <Compile Include="Reports\Enums\ReportStatus.cs" />
+    <Compile Include="Reports\Enums\ReportType.cs" />
+    <Compile Include="Reports\ReportContract.cs" />
+    <Compile Include="Reports\ReportFilters.cs" />
+    <Compile Include="Reports\ReportFilterSet.cs" />
+    <Compile Include="Role\NewRole.cs" />
+    <Compile Include="Role\UpdateRole.cs" />
+    <Compile Include="Security\Access.cs" />
+    <Compile Include="Security\AuthenticateResponse.cs" />
+    <Compile Include="Security\BasicCarrierServiceGroup.cs" />
+    <Compile Include="Security\BasicRole.cs" />
+    <Compile Include="Security\Enums\CustomerSubscriptionStatus.cs" />
+    <Compile Include="Security\Enums\DocumentType.cs" />
+    <Compile Include="Security\Enums\PaymentCycle.cs" />
+    <Compile Include="Security\Enums\PaymentStatus.cs" />
+    <Compile Include="Security\Enums\TokenTypeEnum.cs" />
+    <Compile Include="Security\Permission.cs" />
+    <Compile Include="Security\PermissionGroup.cs" />
+    <Compile Include="Security\Role.cs" />
+    <Compile Include="Security\SecurityToken.cs" />
+    <Compile Include="Security\ValidateTokenRequest.cs" />
+    <Compile Include="ServiceAvailability\CalendarException.cs" />
+    <Compile Include="ServiceAvailability\CalendarExceptionType.cs" />
+    <Compile Include="ServiceAvailability\CalendarOperationTimes.cs" />
+    <Compile Include="ServiceAvailability\CalendarRule.cs" />
+    <Compile Include="ServiceAvailability\CollectionCalendar.cs" />
+    <Compile Include="ServiceAvailability\CollectionWindow.cs" />
+    <Compile Include="ServiceAvailability\OperationTime.cs" />
+    <Compile Include="Subscription\SubscriptionCarrierServiceResponse.cs" />
+    <Compile Include="Subscription\SubscriptionMpdCarrierServiceResponse.cs" />
+    <Compile Include="Subscription\SubscriptionResponse.cs" />
+    <Compile Include="Subscription\Enums\SubscriptionStatus.cs" />
+    <Compile Include="SystemTime.cs" />
+    <Compile Include="Tracking\ConsignmentViewModel.cs" />
+    <Compile Include="Tracking\EventViewModel.cs" />
+    <Compile Include="Tracking\FlattenedConsignmentViewModel.cs" />
+    <Compile Include="Tracking\FlattenedEventViewModel.cs" />
+    <Compile Include="Tracking\FlattenedPackageViewModel.cs" />
+    <Compile Include="Tracking\LegViewModel.cs" />
+    <Compile Include="Tracking\PackageViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Schemas\schema0.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema10.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema11.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema12.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema2.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema3.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema4.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema5.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema6.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema7.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema8.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\schema9.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

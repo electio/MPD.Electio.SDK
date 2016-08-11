@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Consignments.Enums" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Consignments.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ConsignmentAuditMessageCategory" type="tns:ConsignmentAuditMessageCategory" />
+  <xs:simpleType name="ConsignmentAuditMessageCategory">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Tracking" />
+      <xs:enumeration value="ConsignmentLifecycle" />
+      <xs:enumeration value="Labels" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AuditMessageSeverity" type="tns:AuditMessageSeverity" />
+  <xs:simpleType name="AuditMessageSeverity">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Low" />
+      <xs:enumeration value="Medium" />
+      <xs:enumeration value="High" />
+      <xs:enumeration value="Critical" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CategoryType" type="tns:CategoryType" />
+  <xs:simpleType name="CategoryType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Gift" />
+          <xs:enumeration value="CommercialSample" />
+          <xs:enumeration value="Documents" />
+          <xs:enumeration value="Other" />
+          <xs:enumeration value="ReturnedGoods" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="ConsignmentState" type="tns:ConsignmentState" />
+  <xs:simpleType name="ConsignmentState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unallocated" />
+      <xs:enumeration value="Allocating" />
+      <xs:enumeration value="AllocationFailed" />
+      <xs:enumeration value="Allocated" />
+      <xs:enumeration value="Manifesting" />
+      <xs:enumeration value="Manifested" />
+      <xs:enumeration value="ManifestFailed" />
+      <xs:enumeration value="AtDropOffPoint" />
+      <xs:enumeration value="Collected" />
+      <xs:enumeration value="CollectionFailed" />
+      <xs:enumeration value="InTransit" />
+      <xs:enumeration value="Delayed" />
+      <xs:enumeration value="OutForDelivery" />
+      <xs:enumeration value="DeliveryFailed" />
+      <xs:enumeration value="DeliveryFailedCardLeft" />
+      <xs:enumeration value="Delivered" />
+      <xs:enumeration value="PartiallyDelivered" />
+      <xs:enumeration value="AtCollectionPoint" />
+      <xs:enumeration value="ReturnToSender" />
+      <xs:enumeration value="ActionRequired" />
+      <xs:enumeration value="Missing" />
+      <xs:enumeration value="Lost" />
+      <xs:enumeration value="Damaged" />
+      <xs:enumeration value="Cancelling" />
+      <xs:enumeration value="Cancelled" />
+      <xs:enumeration value="InTransitWaiting" />
+      <xs:enumeration value="HeldByCarrier" />
+      <xs:enumeration value="ExchangeFailed" />
+      <xs:enumeration value="AtCustoms" />
+      <xs:enumeration value="CarrierUnableToCollect" />
+      <xs:enumeration value="DeliveredDamaged" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConsignmentAddressType" type="tns:ConsignmentAddressType" />
+  <xs:simpleType name="ConsignmentAddressType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Origin" />
+          <xs:enumeration value="Destination" />
+          <xs:enumeration value="Return" />
+          <xs:enumeration value="Sender" />
+          <xs:enumeration value="Recipient" />
+          <xs:enumeration value="Importer" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="Source" type="tns:Source" />
+  <xs:simpleType name="Source">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Api" />
+      <xs:enumeration value="Web" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CustomChargeType" type="tns:CustomChargeType" />
+  <xs:simpleType name="CustomChargeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Others" />
+      <xs:enumeration value="SalesTax" />
+      <xs:enumeration value="Duty" />
+      <xs:enumeration value="Excise" />
+      <xs:enumeration value="Insurance" />
+      <xs:enumeration value="DisountRebate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MetaDataType" type="tns:MetaDataType" />
+  <xs:simpleType name="MetaDataType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="String" />
+      <xs:enumeration value="Int" />
+      <xs:enumeration value="Decimal" />
+      <xs:enumeration value="DateTime" />
+      <xs:enumeration value="Bool" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PackageState" type="tns:PackageState" />
+  <xs:simpleType name="PackageState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AwaitingCollection" />
+      <xs:enumeration value="Collected" />
+      <xs:enumeration value="InTransit" />
+      <xs:enumeration value="Delivered" />
+      <xs:enumeration value="Damaged" />
+      <xs:enumeration value="Missing" />
+      <xs:enumeration value="Lost" />
+      <xs:enumeration value="Delayed" />
+      <xs:enumeration value="AtCollectionPoint" />
+      <xs:enumeration value="AtDropOffPoint" />
+      <xs:enumeration value="CollectionFailed" />
+      <xs:enumeration value="DeliveryFailedCardLeft" />
+      <xs:enumeration value="DeliveryFailed" />
+      <xs:enumeration value="OutForDelivery" />
+      <xs:enumeration value="ReturnToSender" />
+      <xs:enumeration value="ActionRequired" />
+      <xs:enumeration value="InTransitWaiting" />
+      <xs:enumeration value="HeldByCarrier" />
+      <xs:enumeration value="ExchangeFailed" />
+      <xs:enumeration value="AtCustoms" />
+      <xs:enumeration value="CarrierUnableToCollect" />
+      <xs:enumeration value="DeliveredDamaged" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ShippingTerms" type="tns:ShippingTerms" />
+  <xs:simpleType name="ShippingTerms">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="EXW" />
+          <xs:enumeration value="FCA" />
+          <xs:enumeration value="CPT" />
+          <xs:enumeration value="CIP" />
+          <xs:enumeration value="DAT" />
+          <xs:enumeration value="DAP" />
+          <xs:enumeration value="DDP" />
+          <xs:enumeration value="FAS" />
+          <xs:enumeration value="FOB" />
+          <xs:enumeration value="CFR" />
+          <xs:enumeration value="CIF" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

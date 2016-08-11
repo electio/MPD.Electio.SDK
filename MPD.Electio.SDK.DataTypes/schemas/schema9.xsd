@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common.Enums" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BarcodeType" type="tns:BarcodeType" />
+  <xs:simpleType name="BarcodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AustraliaPostalCode" />
+      <xs:enumeration value="AztecCode" />
+      <xs:enumeration value="Codabar" />
+      <xs:enumeration value="Code11" />
+      <xs:enumeration value="Code128" />
+      <xs:enumeration value="Code39" />
+      <xs:enumeration value="ExtendedCode39" />
+      <xs:enumeration value="Code93" />
+      <xs:enumeration value="CompositeCode" />
+      <xs:enumeration value="DataMatrix" />
+      <xs:enumeration value="EAN13" />
+      <xs:enumeration value="EAN8" />
+      <xs:enumeration value="EANBookland" />
+      <xs:enumeration value="Industrial2Of5" />
+      <xs:enumeration value="Interleaved2Of5" />
+      <xs:enumeration value="ITF14" />
+      <xs:enumeration value="LOGMARS" />
+      <xs:enumeration value="Maxicode" />
+      <xs:enumeration value="MSI" />
+      <xs:enumeration value="OPC" />
+      <xs:enumeration value="PDF417" />
+      <xs:enumeration value="Plessey" />
+      <xs:enumeration value="Postnet" />
+      <xs:enumeration value="QRCode" />
+      <xs:enumeration value="SCC14" />
+      <xs:enumeration value="Standard2Of5" />
+      <xs:enumeration value="UCCEAN218" />
+      <xs:enumeration value="UCCEANShippingContainerCode" />
+      <xs:enumeration value="UPCShippingContainerCode" />
+      <xs:enumeration value="UPCA" />
+      <xs:enumeration value="UPCE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CollectionType" type="tns:CollectionType" />
+  <xs:simpleType name="CollectionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Scheduled" />
+      <xs:enumeration value="AdHoc" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ContentClassification" type="tns:ContentClassification" />
+  <xs:simpleType name="ContentClassification">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotSpecified" />
+          <xs:enumeration value="Unrestricted" />
+          <xs:enumeration value="Dangerous" />
+          <xs:enumeration value="Restricted" />
+          <xs:enumeration value="Liquid" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="ContentClassificationDetails" type="tns:ContentClassificationDetails" />
+  <xs:simpleType name="ContentClassificationDetails">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotSpecified" />
+          <xs:enumeration value="Explosive" />
+          <xs:enumeration value="Flammable" />
+          <xs:enumeration value="Toxic" />
+          <xs:enumeration value="Aerosols" />
+          <xs:enumeration value="Alcohol" />
+          <xs:enumeration value="Batteries" />
+          <xs:enumeration value="Electronics" />
+          <xs:enumeration value="Guns" />
+          <xs:enumeration value="Lighters" />
+          <xs:enumeration value="NailVarnish" />
+          <xs:enumeration value="PerfumeOrAftershave" />
+          <xs:enumeration value="Medicine" />
+          <xs:enumeration value="LiveAnimals" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="CustomsDocType" type="tns:CustomsDocType" />
+  <xs:simpleType name="CustomsDocType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CN22" />
+      <xs:enumeration value="CN23" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DimensionType" type="tns:DimensionType" />
+  <xs:simpleType name="DimensionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Length" />
+      <xs:enumeration value="Girth" />
+      <xs:enumeration value="AbsoluteWeight" />
+      <xs:enumeration value="CombinedDimensions" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MpdCarrierServiceType" type="tns:MpdCarrierServiceType" />
+  <xs:simpleType name="MpdCarrierServiceType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Scheduled" />
+          <xs:enumeration value="AdHoc" />
+          <xs:enumeration value="PickUp" />
+          <xs:enumeration value="DropOff" />
+          <xs:enumeration value="Timed" />
+          <xs:enumeration value="Consolidated" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="PhoneNumberType" type="tns:PhoneNumberType" />
+  <xs:simpleType name="PhoneNumberType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Mobile" />
+      <xs:enumeration value="LandLine" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="StorageType" type="tns:StorageType" />
+  <xs:simpleType name="StorageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Azure" />
+      <xs:enumeration value="Disk" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TitleType" type="tns:TitleType" />
+  <xs:simpleType name="TitleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Mrs" />
+      <xs:enumeration value="Mr" />
+      <xs:enumeration value="Ms" />
+      <xs:enumeration value="Miss" />
+      <xs:enumeration value="Dr" />
+      <xs:enumeration value="Sir" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="VatRateType" type="tns:VatRateType" />
+  <xs:simpleType name="VatRateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Standard" />
+      <xs:enumeration value="Reduced" />
+      <xs:enumeration value="Zero" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Profile" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Profile" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" />
+  <xs:import namespace="http://microsoft.com/wsdl/types/" />
+  <xs:element name="ShippingLocation" nillable="true" type="tns:ShippingLocation" />
+  <xs:complexType name="ShippingLocation">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" base="q1:Address">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ShippingLocationType" type="tns:ShippingLocationType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DefaultLocationForReturns" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Notes" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CustomerReference" xmlns:q2="http://microsoft.com/wsdl/types/" type="q2:guid" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkedAccounts" type="tns:ArrayOfShippingLocationAccount" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ShippingLocationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DistributionCentre" />
+      <xs:enumeration value="Office" />
+      <xs:enumeration value="Store" />
+      <xs:enumeration value="Warehouse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfShippingLocationAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ShippingLocationAccount" nillable="true" type="tns:ShippingLocationAccount" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ShippingLocationAccount">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="AccountReference" xmlns:q3="http://microsoft.com/wsdl/types/" type="q3:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShippingLocationAccount" nillable="true" type="tns:ShippingLocationAccount" />
+  <xs:element name="Reservation" type="tns:ShippingLocationType" />
+</xs:schema>

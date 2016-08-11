@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Caching" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Caching" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="BaseCacheableEntity" abstract="true" />
+  <xs:element name="BaseCacheableEntity" nillable="true" type="tns:BaseCacheableEntity" />
+</xs:schema>

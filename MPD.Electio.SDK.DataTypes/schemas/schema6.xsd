@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.DeliveryOptions" elementFormDefault="qualified" targetNamespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.DeliveryOptions" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" />
+  <xs:import namespace="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Consignments" />
+  <xs:complexType name="DeliveryWindow">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" base="q1:WindowBase" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DeliveryOption" nillable="true" type="tns:DeliveryOption" />
+  <xs:complexType name="DeliveryOption">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EstimatedDeliveryDate" type="tns:EstimatedDeliveryDate" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeliveryWindow" type="tns:DeliveryWindow" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Carrier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierService" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CarrierServiceReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Price" type="tns:Rate" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AllocationCutOff" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:Location" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EstimatedDeliveryDate">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Guaranteed" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Rate">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Net" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Gross" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VatRate" xmlns:q2="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q2:VatRate" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VatAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Currency" xmlns:q3="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q3:Currency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Location">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShopReference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" xmlns:q4="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q4:Address" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Distance" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OpeningTimes" type="tns:OpeningTimes" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeliveryOptions" type="tns:ArrayOfDeliveryOption" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Reservation" type="tns:Reservation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AdditionalInformation" type="tns:ArrayOfAdditionalInformation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OpeningTimes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Monday" type="tns:ArrayOfOpeningTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Tuesday" type="tns:ArrayOfOpeningTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Wednesday" type="tns:ArrayOfOpeningTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Thursday" type="tns:ArrayOfOpeningTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Friday" type="tns:ArrayOfOpeningTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Saturday" type="tns:ArrayOfOpeningTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Sunday" type="tns:ArrayOfOpeningTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfOpeningTime">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OpeningTime" nillable="true" type="tns:OpeningTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OpeningTime">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" base="q5:WindowBase" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDeliveryOption">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeliveryOption" nillable="true" type="tns:DeliveryOption" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Reservation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsReservationRequired" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ExpiryDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAdditionalInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdditionalInformation" nillable="true" xmlns:q6="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Common" type="q6:AdditionalInformation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeliveryOptionDetails" nillable="true" type="tns:DeliveryOptionDetails" />
+  <xs:complexType name="DeliveryOptionDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConsignmentDetail" type="tns:PotentialConsignment" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeliveryOption" type="tns:DeliveryOption" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PotentialConsignment">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Consignments" base="q7:ConsignmentBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DeliveryOptionsResponse" nillable="true" type="tns:DeliveryOptionsResponse" />
+  <xs:complexType name="DeliveryOptionsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DeliveryOptions" type="tns:ArrayOfDeliveryOption" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NonGuaranteedDeliveryOption" type="tns:DeliveryOption" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeliveryOptionSummary" nillable="true" type="tns:DeliveryOptionSummary" />
+  <xs:complexType name="DeliveryOptionSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeliveryOptions" type="tns:ArrayOfDateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TimeSlots" type="tns:ArrayOfDateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PickUp" type="tns:ArrayOfDateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DropOff" type="tns:ArrayOfDateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDateTime">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dateTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeliveryWindow" nillable="true" type="tns:DeliveryWindow" />
+  <xs:element name="EstimatedDeliveryDate" nillable="true" type="tns:EstimatedDeliveryDate" />
+  <xs:element name="Location" nillable="true" type="tns:Location" />
+  <xs:element name="OpeningTime" nillable="true" type="tns:OpeningTime" />
+  <xs:element name="OpeningTimes" nillable="true" type="tns:OpeningTimes" />
+  <xs:element name="PickupOptionsRequest" nillable="true" type="tns:PickupOptionsRequest" />
+  <xs:complexType name="PickupOptionsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://electioapp.com/schemas/v1/MPD.Electio.SDK.DataTypes.Consignments" base="q8:DeliveryOptionsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MaxResults" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PickupOptionsResponse" nillable="true" type="tns:PickupOptionsResponse" />
+  <xs:complexType name="PickupOptionsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MaxResults" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Locations" type="tns:ArrayOfLocation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NonGuaranteedLocation" type="tns:Location" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Location" nillable="true" type="tns:Location" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PotentialConsignment" nillable="true" type="tns:PotentialConsignment" />
+  <xs:element name="Reservation" nillable="true" type="tns:Reservation" />
+</xs:schema>

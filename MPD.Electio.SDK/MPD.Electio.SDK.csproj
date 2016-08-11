@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{168FBAFA-434E-4D81-93BC-3D986F4A1E5E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MPD.Electio.SDK</RootNamespace>
+    <AssemblyName>MPD.Electio.SDK</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\MPD.Electio.SDK.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\MPD.Electio.SDK.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Endpoints\Production.cs" />
+    <Compile Include="Error\ApiException.cs" />
+    <Compile Include="Error\ApiError.cs" />
+    <Compile Include="Error\ApiErrorMessage.cs" />
+    <Compile Include="Error\ApiUnauthorizedException.cs" />
+    <Compile Include="Exceptions\AccountCreationException.cs" />
+    <Compile Include="Exceptions\AccountDisabledException.cs" />
+    <Compile Include="Exceptions\AccountNotFoundException.cs" />
+    <Compile Include="Exceptions\AddressTypeNotFoundException.cs" />
+    <Compile Include="Exceptions\CarrierServiceGroupNotFoundForCustomerException.cs" />
+    <Compile Include="Exceptions\CarrierServiceNotFoundException.cs" />
+    <Compile Include="Exceptions\CompanyCreationException.cs" />
+    <Compile Include="Exceptions\CompanyNotFoundException.cs" />
+    <Compile Include="Exceptions\CountryNotFoundException.cs" />
+    <Compile Include="Exceptions\CountryRequiredForAddressException.cs" />
+    <Compile Include="Exceptions\CustomerNotFoundException.cs" />
+    <Compile Include="Exceptions\CustomersNotFoundException.cs" />
+    <Compile Include="Exceptions\EmailAddressInUseException.cs" />
+    <Compile Include="Exceptions\InvalidApiKeyException.cs" />
+    <Compile Include="Exceptions\LabelNotFoundException.cs" />
+    <Compile Include="Exceptions\MpdCarrierNotFoundException.cs" />
+    <Compile Include="Exceptions\ObjectNotFoundException.cs" />
+    <Compile Include="Exceptions\OperationFailedException.cs" />
+    <Compile Include="Exceptions\PackageSizeNotFoundForCustomerException.cs" />
+    <Compile Include="Exceptions\PermissionNotFoundException.cs" />
+    <Compile Include="Exceptions\PhoneNumberTypeNotFoundException.cs" />
+    <Compile Include="Exceptions\RoleAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\RoleNotFoundException.cs" />
+    <Compile Include="Exceptions\RoleNotFoundForCustomerException.cs" />
+    <Compile Include="Exceptions\RolesNotFoundException.cs" />
+    <Compile Include="Exceptions\ServiceGroupNotFoundException.cs" />
+    <Compile Include="Exceptions\ServiceProfileNotFoundException.cs" />
+    <Compile Include="Exceptions\ShippingLocationNotFoundException.cs" />
+    <Compile Include="Exceptions\ShippingLocationReferenceInUseException.cs" />
+    <Compile Include="Exceptions\SubscriptionPlanNotFoundException.cs" />
+    <Compile Include="Exceptions\TimeZoneDataNotFoundException.cs" />
+    <Compile Include="Exceptions\TokenExpiredException.cs" />
+    <Compile Include="Exceptions\TokenNotFoundException.cs" />
+    <Compile Include="Exceptions\TokenTypeNotFoundException.cs" />
+    <Compile Include="Interfaces\IEndpoints.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Interfaces\IRestConsumer.cs" />
+    <Compile Include="Interfaces\IRestConsumerConfiguration.cs" />
+    <Compile Include="Interfaces\Services\ICollectionCalendarService.cs" />
+    <Compile Include="Interfaces\Services\IConsignmentAllocationService.cs" />
+    <Compile Include="Interfaces\Services\IInvoiceService.cs" />
+    <Compile Include="Interfaces\Services\IItemsService.cs" />
+    <Compile Include="Interfaces\Services\IDeliveryOptionsService.cs" />
+    <Compile Include="Interfaces\Services\IReportService.cs" />
+    <Compile Include="Interfaces\Services\IPackagesService.cs" />
+    <Compile Include="Interfaces\Services\IQuoteService.cs" />
+    <Compile Include="Interfaces\Services\IResetCache.cs" />
+    <Compile Include="Interfaces\Services\ITrackingService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestConsumer.cs" />
+    <Compile Include="RestConsumerConfiguration.cs" />
+    <Compile Include="SdkReferenceLogger.cs" />
+    <Compile Include="Interfaces\Services\IConsignmentService.cs" />
+    <Compile Include="Services\CollectionCalendarService.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\ConsignmentAllocationService.cs" />
+    <Compile Include="Services\InvoiceService.cs" />
+    <Compile Include="Services\ItemsService.cs" />
+    <Compile Include="Services\PackagesService.cs" />
+    <Compile Include="Services\DeliveryOptionsService.cs" />
+    <Compile Include="Services\QuoteService.cs" />
+    <Compile Include="Services\RatesService.cs" />
+    <Compile Include="Services\TrackingService.cs" />
+    <Compile Include="Services\ConsignmentService.cs" />
+    <Compile Include="Interfaces\Services\ISecurityService.cs" />
+    <Compile Include="Services\CarrierServiceService.cs" />
+    <Compile Include="Interfaces\Services\ICarrierServiceService.cs" />
+    <Compile Include="Services\CarriersService.cs" />
+    <Compile Include="Interfaces\Services\ICarriersService.cs" />
+    <Compile Include="Interfaces\Services\ILabelService.cs" />
+    <Compile Include="Interfaces\Services\IPackageSizeService.cs" />
+    <Compile Include="Interfaces\Services\IRoleService.cs" />
+    <Compile Include="Interfaces\Services\IServiceGroupsService.cs" />
+    <Compile Include="Interfaces\Services\IShippingLocationsService.cs" />
+    <Compile Include="Interfaces\Services\IStaticDataService.cs" />
+    <Compile Include="Services\LabelService.cs" />
+    <Compile Include="Services\PackageSizeService.cs" />
+    <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\SecurityService.cs" />
+    <Compile Include="Services\ServiceGroupsService.cs" />
+    <Compile Include="Services\ShippingLocationsServiceService.cs" />
+    <Compile Include="Services\StaticDataService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MPD.Electio.SDK.DataTypes\MPD.Electio.SDK.DataTypes.csproj">
+      <Project>{1a8af7e6-5493-44f1-81c0-e0a737467dd9}</Project>
+      <Name>MPD.Electio.SDK.DataTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
